@@ -11,18 +11,18 @@ public class AuthPersistence implements IAuthPersistence {
     IAuthRepository database;
     @Override
     public void create(Auth data) {
-        Runnable runnable = () -> this.database.save(data);
+        Runnable runnable = () -> this.database.save(AuthModel.fromAuth(data));
         Thread thread = new Thread(runnable);
         thread.start();
     }
 
     @Override
     public void update(Auth data) {
-        this.database.save(data);
+        this.database.save(AuthModel.fromAuth(data));
     }
 
     @Override
     public Optional<Auth> getByUserNameOrNull(String userName) {
-        return this.database.findByUserName(userName);
+        return Auth.fromAuthModel(this.database.findByUserName(userName));
     }
 }

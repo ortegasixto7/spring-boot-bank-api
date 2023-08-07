@@ -21,7 +21,7 @@ public class SignUpUseCase implements IUseCaseCommand<SignUpRequest> {
     }
 
     @Override
-    public void execute(SignUpRequest request) throws Exception {
+    public void execute(SignUpRequest request) {
         new SignUpRequestValidator().validate(request);
 
         var authResult = this.authPersistence.getByUserNameOrNull(request.userName);
