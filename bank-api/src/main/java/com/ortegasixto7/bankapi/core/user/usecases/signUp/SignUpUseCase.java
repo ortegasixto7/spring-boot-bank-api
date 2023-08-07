@@ -37,6 +37,7 @@ public class SignUpUseCase implements IUseCaseCommand<SignUpRequest> {
         user.lastName = request.lastName;
         user.userName = request.userName;
         user.createdAt = auth.createdAt;
+
         this.userPersistence.create(user);
         this.authPersistence.create(auth);
     }

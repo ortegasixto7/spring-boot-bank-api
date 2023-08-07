@@ -8,22 +8,24 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public class UserPersistence implements IUserPersistence{
+public class UserPersistence implements IUserPersistence {
     @Autowired
     IUserRepository database;
     @Override
-    public void create(User user) {
-        this.database.save(user);
+    public void create(User data) {
+        Runnable runnable = () -> this.database.save(UserModel.fromUser(data));
+        Thread thread = new Thread(runnable);
+        thread.start();
     }
 
     @Override
-    public void update(User user) {
-        this.database.save(user);
+    public void update(User data) {
+        this.database.save(UserModel.fromUser(data));
     }
 
     @Override
     public Optional<User> getByIdOrNull(String id) {
-        return this.database.findById(id);
+        return User.fromUserModel(this.database.findById(id));
     }
 
     @Override
@@ -35,6 +37,6 @@ public class UserPersistence implements IUserPersistence{
 
     @Override
     public Optional<User> getByUserNameOrNull(String userName) {
-        return this.database.findByUserName(userName);
+        return User.fromUserModel(this.database.findByUserName(userName));
     }
 }
