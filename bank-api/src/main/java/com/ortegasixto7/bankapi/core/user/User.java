@@ -1,19 +1,22 @@
 package com.ortegasixto7.bankapi.core.user;
 
-import jakarta.persistence.*;
+import java.util.Optional;
 
-
-@Entity
-@Table(name = "users")
 public class User {
-    @Id
     public String id;
-    @Column(name = "first_name")
     public String firstName;
-    @Column(name = "last_name")
     public String lastName;
-    @Column(name = "username")
     public String userName;
-    @Column(name = "created_at")
     public Long createdAt;
+
+    public static Optional<User> fromUserModel(Optional<UserModel> data) {
+        if (data.isEmpty()) return Optional.empty();
+        var result = new User();
+        result.id = data.get().id;
+        result.firstName = data.get().firstName;
+        result.lastName = data.get().lastName;
+        result.userName = data.get().userName;
+        result.createdAt = data.get().createdAt;
+        return Optional.of(result);
+    }
 }
