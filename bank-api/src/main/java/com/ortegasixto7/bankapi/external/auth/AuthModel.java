@@ -6,7 +6,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 import java.util.Date;
-import java.util.Optional;
 import java.util.UUID;
 
 @Entity
@@ -18,6 +17,8 @@ public class AuthModel {
     public String userName;
     @Column(name = "password")
     public String password;
+    @Column(name = "roles")
+    public String roles;
     @Column(name = "created_at")
     public Long createdAt = new Date().getTime();
 
@@ -27,6 +28,14 @@ public class AuthModel {
         result.userName = data.userName;
         result.password = data.password;
         result.createdAt = data.createdAt;
+
+        String[] roles = new String[data.roles.size()];
+        for (int i = 0; i < data.roles.size(); i++) {
+            roles[i] = data.roles.get(i).toString();
+        }
+
+        result.roles = String.join(",", roles);
+
         return result;
     }
 }
