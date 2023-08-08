@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/users")
-public class UsersController {
+public class UserController {
     @Autowired
     IUserPersistence userPersistence;
     @Autowired
     IAuthPersistence authPersistence;
 
     @PostMapping("/sign-up")
-    public ResponseEntity signUp(@RequestBody SignUpRequest request) throws Exception {
+    public ResponseEntity signUp(@RequestBody SignUpRequest request) {
         new SignUpUseCase(this.userPersistence, this.authPersistence).execute(request);
         return new ResponseEntity(HttpStatus.OK);
     }
