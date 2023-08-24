@@ -17,7 +17,7 @@ public class UserController {
     @Autowired
     IAuthPersistence authPersistence;
 
-    @PostMapping("/sign-up")
+    @PostMapping("/sign-up/v1")
     public ResponseEntity signUp(@RequestBody SignUpRequest request) {
         new SignUpUseCase(this.userPersistence, this.authPersistence).execute(request);
         return new ResponseEntity(HttpStatus.OK);
