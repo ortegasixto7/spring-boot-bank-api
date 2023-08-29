@@ -9,5 +9,5 @@ RUN ./mvnw clean install -DskipTests
 FROM eclipse-temurin:17-jre-alpine
 WORKDIR /app
 EXPOSE 8000
-COPY --from=build-stage /app/target/*.jar /app/*.jar
-ENTRYPOINT ["java", "-jar", "/app/*.jar" ]
+COPY --from=build-stage /app/target/*.jar /app/bank-api.jar
+ENTRYPOINT ["java", "-jar", "/app/bank-api.jar" ]
