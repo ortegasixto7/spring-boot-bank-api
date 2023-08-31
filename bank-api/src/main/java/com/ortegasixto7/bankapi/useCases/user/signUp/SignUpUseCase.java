@@ -1,4 +1,4 @@
-package com.ortegasixto7.bankapi.core.user.usecases.signUp;
+package com.ortegasixto7.bankapi.useCases.user.signUp;
 
 import com.ortegasixto7.bankapi.core.user.IUserPersistence;
 import com.ortegasixto7.bankapi.core.user.User;
@@ -6,7 +6,7 @@ import com.ortegasixto7.bankapi.external.auth.Auth;
 import com.ortegasixto7.bankapi.external.auth.IAuthPersistence;
 import com.ortegasixto7.bankapi.infrastructure.IUseCaseCommand;
 import com.ortegasixto7.bankapi.infrastructure.exceptions.BadRequestException;
-import com.ortegasixto7.bankapi.infrastructure.exceptions.ExceptionCode;
+import com.ortegasixto7.bankapi.infrastructure.exceptions.Exception;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +25,7 @@ public class SignUpUseCase implements IUseCaseCommand<SignUpRequest> {
         new SignUpRequestValidator().validate(request);
 
         var authResult = this.authPersistence.getByUserNameOrNull(request.userName);
-        if(!authResult.isEmpty()) throw new BadRequestException(ExceptionCode.UNAVAILABLE_USER_NAME);
+        if(!authResult.isEmpty()) throw new BadRequestException(Exception.UNAVAILABLE_USER_NAME);
 
         Auth auth = new Auth();
         auth.userName = request.userName;

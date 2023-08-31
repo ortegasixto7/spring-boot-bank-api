@@ -1,4 +1,4 @@
-package com.ortegasixto7.bankapi.core.user.usecases.signUp;
+package com.ortegasixto7.bankapi.useCases.user.signUp;
 
 public class SignUpRequest {
     public String firstName;

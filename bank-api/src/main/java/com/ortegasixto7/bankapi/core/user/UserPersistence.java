@@ -1,6 +1,6 @@
 package com.ortegasixto7.bankapi.core.user;
 
-import com.ortegasixto7.bankapi.infrastructure.exceptions.ExceptionCode;
+import com.ortegasixto7.bankapi.infrastructure.exceptions.Exception;
 import com.ortegasixto7.bankapi.infrastructure.exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -31,7 +31,7 @@ public class UserPersistence implements IUserPersistence {
     @Override
     public User getByIdOrException(String id) throws NotFoundException {
         var user = this.getByIdOrNull(id);
-        if(user.isEmpty()) throw new NotFoundException(ExceptionCode.USER_NOT_FOUND);
+        if(user.isEmpty()) throw new NotFoundException(Exception.USER_NOT_FOUND);
         return user.get();
     }
 

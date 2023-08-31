@@ -1,6 +1,6 @@
 package com.ortegasixto7.bankapi.infrastructure.exceptions;
 
-public enum ExceptionCode {
+public enum Exception {
     INTERNAL_ERROR,
     UNAUTHORIZED,
     FIRST_NAME_IS_REQUIRED,

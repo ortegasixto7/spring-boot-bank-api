@@ -1,8 +1,8 @@
 package com.ortegasixto7.bankapi.controllers;
 
 import com.ortegasixto7.bankapi.core.user.IUserPersistence;
-import com.ortegasixto7.bankapi.core.user.usecases.signUp.SignUpRequest;
-import com.ortegasixto7.bankapi.core.user.usecases.signUp.SignUpUseCase;
+import com.ortegasixto7.bankapi.useCases.user.signUp.SignUpRequest;
+import com.ortegasixto7.bankapi.useCases.user.signUp.SignUpUseCase;
 import com.ortegasixto7.bankapi.external.auth.IAuthPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
